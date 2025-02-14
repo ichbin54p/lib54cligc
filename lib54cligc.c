@@ -17,9 +17,6 @@ struct termios TERMINAL_FLAGS_NEW;
 struct winsize TERMINAL_SIZE;
 struct lib54cligc_pixelmap lib54cligc_pixels;
 
-char** pixels;
-int pixel_idx;
-
 int lib54cligc_init(){
     if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &TERMINAL_SIZE) == -1){
         printf("init: ioctl error\n");
@@ -70,9 +67,9 @@ void lib54cligc_pixel_add(int x, int y, int r, int g, int b){
     printf("\033[%d;%dH\033[48;2;%d;%d;%dm  \033[0m", y, (x * 2) - 1, r, g, b);
     fflush(stdout);
 
-    lib54cligc_pixels.x[pixel_idx] = x + 1;
-    lib54cligc_pixels.y[pixel_idx] = y + 1;
-    pixel_idx += 1;
+    lib54cligc_pixels.x[lib54cligc_pixels.idx] = x + 1;
+    lib54cligc_pixels.y[lib54cligc_pixels.idx] = y + 1;
+    lib54cligc_pixels.idx += 1;
 }
 
 void lib54cligc_pixel_add_advanced(int x, int y, char* e){
@@ -110,6 +107,8 @@ void lib54cligc_pixel_clear(){
             lib54cligc_pixel_remove_fast(i);
         }
     }
+
+    lib54cligc_pixels.idx = 0;
 
     printf("\033[;H");
     fflush(stdout);
