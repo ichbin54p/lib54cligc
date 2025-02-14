@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -62,18 +63,21 @@ int lib54cligc_init(){
 }
 
 void lib54cligc_pixel_add(int x, int y, int r, int g, int b){
-    printf("\033[%d;%dH\033[48;2;%d;%d;%dm  \033[0m", y, (x * 2) - 1, r, g, b);
-    fflush(stdout);
+    if (x > 0 && x < round(TERMINAL_SIZE.ws_col / 2) && y > 0 && y < TERMINAL_SIZE.ws_row){
+        printf("\033[%d;%dH\033[48;2;%d;%d;%dm  \033[0m", y, (x * 2) - 1, r, g, b);
+        fflush(stdout);
 
-    lib54cligc_pixels.x[lib54cligc_pixels.idx] = x + 1;
-    lib54cligc_pixels.y[lib54cligc_pixels.idx] = y + 1;
-    lib54cligc_pixels.idx += 1;
+        lib54cligc_pixels.x[lib54cligc_pixels.idx] = x + 1;
+        lib54cligc_pixels.y[lib54cligc_pixels.idx] = y + 1;
+        lib54cligc_pixels.idx += 1;
+    }
 }
 
 void lib54cligc_pixel_add_advanced(int x, int y, char* e){
-    printf("\033[%d;%dH%s", y, (x * 2) - 1, e);
-    // printf("\n\n\n%d: %d", x, y);
-    fflush(stdout);
+    if (x > 0 && x < round(TERMINAL_SIZE.ws_col / 2) && y > 0 && y < TERMINAL_SIZE.ws_row){
+        printf("\033[%d;%dH%s", y, (x * 2) - 1, e);
+        fflush(stdout);
+    }
 }
 
 void lib54cligc_pixel_remove_fast(int i){
