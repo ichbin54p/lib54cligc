@@ -10,11 +10,11 @@
 
 First of all, you will need to initialize `lib54cligc` using `lib54cligc_init();` and make sure you run the quit function when your program ends using `lib54cligc_quit();`
 
-Now, when you execute your program, first of all, it will tell you how many bytes it's allocating for pm (pixel map) e.g: Allocating *n* bytes for pm.
+Now, when you execute your program, you should have a log file containing all important information about the program while it's running.
 
 Then it should print enough new lines to move the text above it off-screen from the terminal.
 
-Lastly, it will print the quit message, it should be successful. If there are any errors during the initialization or exit, please make an issue on [github](https://github.com/ichbin54p/lib54cligc)
+If there are any errors during the initialization or exit, please make an issue on [github](https://github.com/ichbin54p/lib54cligc)
 
 Now, you are ready print pixels on your terminal. You can use the `lib54cligc_pixel_add(x, y, r, g, b)` function to print pixels on your screen. The arguements are:
 
@@ -52,6 +52,8 @@ You could also use `lib54cligc_pixel_remove_fast(i)` but then you have to use an
 
 unless you use the `lib54cligc_pixel_add_advanced(x, y, e)` function, it is basically the same as `lib54cligc_pixel_add` except instead of using rgb you have to input your own escape codes, as well as adding the pixel characters and end escape code which is normally `\033[0m`.
 
+There is also a `lib54cligc_rect` function, play around with it.
+
 Now, try making a bouncey ball program.
 
 ### Reference
@@ -87,6 +89,18 @@ This structure contains your terminal size during the initialization
 
 This is a structure which contains the pixel map from `lib54cligc`.
 
+#### `lib54cligc_text`
+
+This structure is basically the same as `lib54cligc_pixels` except it's for the characters on the terminal, not the pixels.
+
+#### `pms`
+
+Stands for pixel map size, in bytes.
+
+#### `tms`
+
+Stands for text map size, in bytes.
+
 #### `lib54cligc_init()`
 
 This function initializes `lib54cligc`. You must execute this function before you do anything else with `lib54cligc`.
@@ -98,6 +112,18 @@ You can place pixels on the terminal using this function. The first 2 arguements
 #### `lib54cligc_pixel_add_advanced(int x, int y, char* e)`
 
 The same as `lib54cligc_pixel_add` except instead of having rgb arguements, you input your own escape codes at arguement e.
+
+#### `lib54cligc_pixel_text_advanced(int x, int y, char* text)`
+
+The same as `lib54cligc_pixel_text` except instead of having rgb arguements for the foreground and background, you input your own escape codes at arguement e. 
+
+#### `lib54cligc_pixel_rect(int x, int y, int w, int h, int r, int g, int b)`
+
+Almost the same as `lib54cligc_pixel_add` except you have 2 extra arguements: `w` and `h`.
+
+#### `lib54cligc_pixel_text(int x, int y, char* text, int fr, int fg, int fb, int br, int bg, int bb)`
+
+You can place characters on the terminal using this function. The first 2 arguements are for the position of the text and the next 3 are for the text color and the last 3 are for the background color.
 
 #### `lib54cligc_pixel_remove_fast(int i)`
 
@@ -118,3 +144,5 @@ Quits `lib54cligc`, make sure to execute this program when your program is finis
 ## Credits
 
 `lib54cligc` was programmed by 54p (ichbin54p)
+
+Thanks to everyone who gave feedback, as well.
