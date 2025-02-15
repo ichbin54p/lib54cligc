@@ -1,4 +1,3 @@
-#include <math.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,7 +63,7 @@ int lib54cligc_init(){
 
     fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 
-    pms = round(TERMINAL_SIZE.ws_col / 2) * TERMINAL_SIZE.ws_row * sizeof(int);
+    pms = (TERMINAL_SIZE.ws_col / 2) * TERMINAL_SIZE.ws_row * sizeof(int);
     tms = TERMINAL_SIZE.ws_col * TERMINAL_SIZE.ws_row * sizeof(int);
 
     lib54cligc_pixels.x = malloc(pms);
@@ -98,7 +97,7 @@ int lib54cligc_init(){
 }
 
 void lib54cligc_pixel_add(int x, int y, int r, int g, int b){
-    if (x > 0 && x < round(TERMINAL_SIZE.ws_col / 2) && y > 0 && y < TERMINAL_SIZE.ws_row){
+    if (x > 0 && x < TERMINAL_SIZE.ws_col / 2 && y > 0 && y < TERMINAL_SIZE.ws_row){
         printf("\033[%d;%dH\033[48;2;%d;%d;%dm  \033[0m", y, (x * 2) - 1, r, g, b);
         fflush(stdout);
 
@@ -129,7 +128,7 @@ void lib54cligc_pixel_text_advanced(int x, int y, char* text){
 }
 
 void lib54cligc_pixel_add_advanced(int x, int y, char* e){
-    if (x > 0 && x < round(TERMINAL_SIZE.ws_col / 2) && y > 0 && y < TERMINAL_SIZE.ws_row){
+    if (x > 0 && x < TERMINAL_SIZE.ws_col / 2 && y > 0 && y < TERMINAL_SIZE.ws_row){
         printf("\033[%d;%dH%s", y, (x * 2) - 1, e);
         fflush(stdout);
     }
