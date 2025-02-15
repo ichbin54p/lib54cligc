@@ -211,8 +211,6 @@ void lib54cligc_pixel_clear(){
 int lib54cligc_quit(){
     FILE* log = fopen("log", "a");
 
-    fprintf(log, "quiting...\n");
-
     if (tcsetattr(STDIN_FILENO, TCSANOW, &TERMINAL_FLAGS) == -1){
         fprintf(log, "quit: tcsetattr error\n");
         return -1;
