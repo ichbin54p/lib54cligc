@@ -1,4 +1,5 @@
 #include <math.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -52,14 +53,16 @@ int lib54cligc_init(){
     }
 
     TERMINAL_FLAGS_NEW = TERMINAL_FLAGS;
-    TERMINAL_FLAGS_NEW.c_lflag &= ~(ICANON | ECHO);
+    TERMINAL_FLAGS_NEW.c_lflag &= ~(ICANON | ECHO | ISIG);
 
     if (tcsetattr(STDIN_FILENO, TCSANOW, &TERMINAL_FLAGS_NEW) == -1){
         fprintf(log, "init: tcsetattr error\n");
         return -1;
     } else {
-        fprintf(log, "init: set terminal flags:\nc_lflag:\n- ~ICANON\n- ~ECHO\n");
+        fprintf(log, "init: set terminal flags:\n- c:%d\n- i:%d\n", TERMINAL_FLAGS_NEW.c_cflag, TERMINAL_FLAGS_NEW.c_iflag);
     }
+
+    fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 
     pms = round(TERMINAL_SIZE.ws_col / 2) * TERMINAL_SIZE.ws_row;
     tms = TERMINAL_SIZE.ws_col * TERMINAL_SIZE.ws_row;
