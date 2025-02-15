@@ -8,8 +8,8 @@
 #include <sys/ioctl.h>
 
 struct lib54cligc_pixelmap {
-    char* x;
-    char* y;
+    int* x;
+    int* y;
     int idx;
 };
 
@@ -42,7 +42,7 @@ int lib54cligc_init(){
         fprintf(log, "init: ioctl error\n");
         return -1;
     } else {
-        fprintf(log, "init: ioctl success\n");
+        fprintf(log, "init: terminal size:\n- colums: %d\n- lines: %d\n", TERMINAL_SIZE.ws_col, TERMINAL_SIZE.ws_row);
     }
 
     if (tcgetattr(STDIN_FILENO, &TERMINAL_FLAGS) == -1){
@@ -64,8 +64,8 @@ int lib54cligc_init(){
 
     fcntl(STDIN_FILENO, F_SETFL, O_NONBLOCK);
 
-    pms = round(TERMINAL_SIZE.ws_col / 2) * TERMINAL_SIZE.ws_row;
-    tms = TERMINAL_SIZE.ws_col * TERMINAL_SIZE.ws_row;
+    pms = round(TERMINAL_SIZE.ws_col / 2) * TERMINAL_SIZE.ws_row * sizeof(int);
+    tms = TERMINAL_SIZE.ws_col * TERMINAL_SIZE.ws_row * sizeof(int);
 
     lib54cligc_pixels.x = malloc(pms);
     lib54cligc_pixels.y = malloc(pms);
