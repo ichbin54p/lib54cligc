@@ -99,7 +99,6 @@ int lib54cligc_init(){
 void lib54cligc_pixel_add(int x, int y, int r, int g, int b){
     if (x > 0 && x < TERMINAL_SIZE.ws_col / 2 && y > 0 && y < TERMINAL_SIZE.ws_row){
         printf("\033[%d;%dH\033[48;2;%d;%d;%dm  \033[0m", y, (x * 2) - 1, r, g, b);
-        fflush(stdout);
 
         lib54cligc_pixels.x[lib54cligc_pixels.idx] = x + 1;
         lib54cligc_pixels.y[lib54cligc_pixels.idx] = y + 1;
@@ -110,7 +109,6 @@ void lib54cligc_pixel_add(int x, int y, int r, int g, int b){
 void lib54cligc_pixel_text(int x, int y, char* text, int fr, int fg, int fb, int br, int bg, int bb){
     if (x > 0 && x < TERMINAL_SIZE.ws_col - strlen(text) && y > 0 && y < TERMINAL_SIZE.ws_row){
         printf("\033[%d;%dH\033[38;2;%d;%d;%dm\033[48;2;%d;%d;%dm%s\033[0m", y, x, fr, fg, fb, br, bg, bb, text);
-        fflush(stdout);
 
         for (int i = 0; i < strlen(text); i++){
             lib54cligc_text.x[lib54cligc_text.idx] = x + i + 1;
@@ -123,14 +121,12 @@ void lib54cligc_pixel_text(int x, int y, char* text, int fr, int fg, int fb, int
 void lib54cligc_pixel_text_advanced(int x, int y, char* text){
     if (x > 0 && x < TERMINAL_SIZE.ws_col - strlen(text) && y > 0 && y < TERMINAL_SIZE.ws_row){
         printf("\033[%d;%dH%s", y, x, text);
-        fflush(stdout);
     }
 }
 
 void lib54cligc_pixel_add_advanced(int x, int y, char* e){
     if (x > 0 && x < TERMINAL_SIZE.ws_col / 2 && y > 0 && y < TERMINAL_SIZE.ws_row){
         printf("\033[%d;%dH%s", y, (x * 2) - 1, e);
-        fflush(stdout);
     }
 }
 
@@ -164,7 +160,6 @@ void lib54cligc_text_remove_fast(int i){
 
 void lib54cligc_pixel_remove(int x, int y){
     printf("\033[0m\033[%d;%dH  ", y, (x * 2) - 1);
-    fflush(stdout);
 
     for (int i = 0; i < TERMINAL_SIZE.ws_col * TERMINAL_SIZE.ws_row; i++){
         if (lib54cligc_pixels.x[i] == x || lib54cligc_pixels.y[i] == y){
@@ -177,7 +172,6 @@ void lib54cligc_pixel_remove(int x, int y){
 
 void lib54cligc_text_remove(int x, int y){
     printf("\033[0m\033[%d;%dH  ", y, x);
-    fflush(stdout);
 
     for (int i = 0; i < TERMINAL_SIZE.ws_col * TERMINAL_SIZE.ws_row; i++){
         if (lib54cligc_pixels.x[i] == x || lib54cligc_pixels.y[i] == y){
