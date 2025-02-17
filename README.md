@@ -141,6 +141,8 @@ Removes all pixels from the terminal.
 
 Quits `lib54cligc`, make sure to execute this program when your program is finished running.
 
+# lib54cligc-widgets
+
 ## Credits
 
 `lib54cligc` was programmed by 54p (ichbin54p)
