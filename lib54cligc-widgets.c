@@ -89,10 +89,12 @@ void lib54cligc_widget_input_display(int x, int y, int index, int active, char k
                     fprintf(f, "Widget: input %d: there are no characters to remove\n", input->index);
                 }
             } else if (k == '\x1b' || k == '\n'){
-                pactive = (int*) 0;
+                *pactive = 0;
                 input->active = 0;
 
                 fprintf(f, "Widget: input %d: inactive\n", input->index);
+            } else if (k == '\t'){
+                fprintf(f, "Widget: input %d: illegal key was pressed\n", input->index);
             } else {
                 if (input->chars < input->max_chars - 1){
                     input->content[input->chars] = k;
@@ -108,7 +110,7 @@ void lib54cligc_widget_input_display(int x, int y, int index, int active, char k
         if (index == input->index){
             if (k > 0){
                 if (k == '\n'){
-                    pactive = (int*) 1;
+                    *pactive =  1;
                     input->active = 1;
 
                     fprintf(f, "Widget: input %d: active\n", input->index);
