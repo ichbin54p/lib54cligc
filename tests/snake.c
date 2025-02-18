@@ -1,14 +1,10 @@
 #include <math.h>
-#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <signal.h>
 #include <unistd.h>
-#include <string.h>
 #include <termio.h>
 #include <sys/time.h>
-#include <sys/ioctl.h>
-#include "lib54cligc/lib54cligc.h"
+#include <lib54cligc/lib54cligc.h>
 
 long long tnow;
 long long tsec;

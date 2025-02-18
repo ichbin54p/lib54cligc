@@ -2,9 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termios.h>
 #include <sys/time.h>
-#include <sys/ioctl.h>
 #include <lib54cligc/lib54cligc.h>
 #include <lib54cligc/lib54cligc-widgets.h>
 
