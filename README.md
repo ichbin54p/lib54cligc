@@ -2,6 +2,8 @@
 
 `lib54cligc` is a library for terminal graphics, for linux machines, developed in C. lib 54 cli(command line interface) g(graphics) c(programming language)
 
+![alt text](https://github.com/ichbin54p/lib54cligc/blob/main/Resources/snake.gif?raw=true)
+
 **NOTE**: This library is meant for linux machines so it will **not work on windows**.
 
 ## Documentation
@@ -142,6 +144,10 @@ Removes all pixels from the terminal.
 Quits `lib54cligc`, make sure to execute this program when your program is finished running.
 
 # lib54cligc-widgets
+
+`lib54cligc-widgets` is an addon for `lib54cligc` which adds widgets such as buttons and input fields.
+
+![alt text](https://github.com/ichbin54p/lib54cligc/blob/main/Resources/widget.gif?raw=true)
 
 ## Credits
 
