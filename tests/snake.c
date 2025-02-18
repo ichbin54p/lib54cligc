@@ -84,7 +84,7 @@ int main(){
     }
 
     char score_s[4];
-    char sfps[10];
+    char sfps[4];
 
     int fps = 0;
     int ifps = 0;
