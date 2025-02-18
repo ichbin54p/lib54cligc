@@ -78,8 +78,8 @@ unless you use the `lib54cligc_pixel_add_advanced(x, y, e)` function, it is basi
 
 There is also a `lib54cligc_rect` function, play around with it.
 
-Now, try making a bouncey ball program.
 
+Now try making a bouncy ball program
 ### Reference
 
 #### `lib54cligc_pixelmap`
@@ -424,9 +424,13 @@ Display an input widget
 
 Display a button widget
 
-## Credits
+# Credits
 
 `lib54cligc` was programmed by `54p` (`ichbin54p`)
 
 Thanks to `Riverspace` for testing
 Thanks to **everyone** who gave feedback, as well.
+
+# Extra
+
+Make sure to check out `tests` for some fun silly programs
