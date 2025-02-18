@@ -25,7 +25,7 @@ struct lib54cligc_widget_input {
 
 int lib54cligc_widget_input_create(char* placeholder, struct lib54cligc_widget_input* input);
 int lib54cligc_widget_input_destroy(struct lib54cligc_widget_input* input);
-void lib54cligc_widget_input_display(int x, int y, int index, int active, char k, size_t kl, struct lib54cligc_widget_input* input);
+void lib54cligc_widget_input_display(int x, int y, int index, int active, char k, int* pactive, struct lib54cligc_widget_input* input);
 void lib54cligc_widget_button_display(int x, int y, char* label, int index, int activate, struct lib54cligc_widget_button button);
 
 #endif

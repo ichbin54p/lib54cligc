@@ -69,7 +69,7 @@ int lib54cligc_widget_input_destroy(struct lib54cligc_widget_input* input){
     return 0;
 }
 
-void lib54cligc_widget_input_display(int x, int y, int index, int active, char k, size_t kl, struct lib54cligc_widget_input* input){
+void lib54cligc_widget_input_display(int x, int y, int index, int active, char k, int* pactive, struct lib54cligc_widget_input* input){
     FILE* f = fopen("dlog", "a");
     char* o;
 
@@ -83,13 +83,15 @@ void lib54cligc_widget_input_display(int x, int y, int index, int active, char k
         if (k > 0){
             if (k == 127){
                 if (input->chars > 0){
-                    input->content[input->chars] = ' ';
                     input->chars -= 1;
+                    input->content[input->chars] = ' ';
                 } else {
                     fprintf(f, "Widget: input %d: there are no characters to remove\n", input->index);
                 }
-            } else if (k == '\x1b'){
+            } else if (k == '\x1b' || k == '\n'){
+                pactive = 0;
                 input->active = 0;
+
                 fprintf(f, "Widget: input %d: inactive\n", input->index);
             } else {
                 if (input->chars < input->max_chars - 1){
@@ -106,10 +108,12 @@ void lib54cligc_widget_input_display(int x, int y, int index, int active, char k
         if (index == input->index){
             if (k > 0){
                 if (k == '\n'){
+                    pactive = 1;
                     input->active = 1;
+                    
                     fprintf(f, "Widget: input %d: active\n", input->index);
                 } else {
-                    fprintf(f, "Widget: input %d: unable to input character %c, not active %d\n", input->index, k, (int) kl);
+                    fprintf(f, "Widget: input %d: unable to input character %c, not active %d\n", input->index, k, k);
                 }
             }
 
