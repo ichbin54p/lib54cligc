@@ -75,4 +75,6 @@ int main(){
 
     lib54cligc_widget_input_destroy(&input);
     lib54cligc_quit();
+
+    return 0;
 }
