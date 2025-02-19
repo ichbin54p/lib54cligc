@@ -5,7 +5,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <sys/ioctl.h>
-#include "lib54cligc/lib54cligc.h"
+#include <lib54cligc/lib54cligc.h>
 
 long long t() {
     struct timeval tv;
