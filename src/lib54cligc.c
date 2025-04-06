@@ -6,17 +6,18 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 
-struct lib54cligc_pixelmap {
+typedef struct {
     int* x;
     int* y;
     int idx;
-};
+} lib54cligc_pixelmap;
 
 struct termios TERMINAL_FLAGS;
 struct termios TERMINAL_FLAGS_NEW;
 struct winsize TERMINAL_SIZE;
-struct lib54cligc_pixelmap lib54cligc_pixels;
-struct lib54cligc_pixelmap lib54cligc_text;
+
+lib54cligc_pixelmap lib54cligc_pixels;
+lib54cligc_pixelmap lib54cligc_text;
 
 int pms;
 int tms;

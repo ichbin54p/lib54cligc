@@ -217,7 +217,7 @@ int main(){
     int cursor = 0; // The cursor is the current index, which we will compare to our button
     char lk = 0; // Will be used later for key detection
 
-    struct lib54cligc_widget_button button = {0, {255, 255, 255}, {0, 0, 0}, {0, 0, 0}, {255, 255, 255}, onclick};
+    lib54cligc_widget_button button = {0, {255, 255, 255}, {0, 0, 0}, {0, 0, 0}, {255, 255, 255}, onclick};
 
     // Create a button at index 0 which will execute our onclick function if activated
 
@@ -309,7 +309,7 @@ Afterwards, you must destroy it with `lib54cligc_widget_input_destroy(input);` w
 Now, let's check out another code example! Actually, this code example was used to test the library widget. You can find the gif at [lib54cligc-widgets](#lib54cligc-widgets)
 
 ```c
-struct lib54cligc_widget_input input = {0, 0, {255, 255, 255}, {50, 50, 40}, {0, 0, 0}, {255, 255, 255}, 11, 0};
+lib54cligc_widget_input input = {0, 0, {255, 255, 255}, {50, 50, 40}, {0, 0, 0}, {255, 255, 255}, 11, 0};
 
 // Define the input at index 0 with an 11 character limit
 
@@ -335,7 +335,7 @@ int main(){
 
     char lk = 0;
 
-    struct lib54cligc_widget_button submit = {1, {255, 255, 255}, {0, 0, 0}, {0, 0, 0}, {255, 255, 255}, onclick};
+    lib54cligc_widget_button submit = {1, {255, 255, 255}, {0, 0, 0}, {0, 0, 0}, {255, 255, 255}, onclick};
     
     // Our submit button
 

@@ -3,16 +3,16 @@
 #include <string.h>
 #include "lib54cligc.h"
 
-struct lib54cligc_widget_button {
+typedef struct {
     int index;
     int fg1[3];
     int bg1[3];
     int fg2[3];
     int bg2[3];
     void (*onclick)(void);
-};
+} lib54cligc_widget_button;
 
-struct lib54cligc_widget_input {
+typedef struct {
     int active;
     int index;
     int fg1[3];
@@ -23,9 +23,9 @@ struct lib54cligc_widget_input {
     int chars;
     char* content;
     char* placeholder;
-};
+} lib54cligc_widget_input;
 
-int lib54cligc_widget_input_create(char* placeholder, struct lib54cligc_widget_input* input){
+int lib54cligc_widget_input_create(char* placeholder, lib54cligc_widget_input* input){
     FILE* f = fopen("log", "a");
 
     input->content = malloc(input->max_chars + 1);
@@ -57,7 +57,7 @@ int lib54cligc_widget_input_create(char* placeholder, struct lib54cligc_widget_i
     return 0;
 }
 
-int lib54cligc_widget_input_destroy(struct lib54cligc_widget_input* input){
+int lib54cligc_widget_input_destroy(lib54cligc_widget_input* input){
     FILE* f = fopen("log", "a");
 
     free(input->content);
@@ -69,7 +69,7 @@ int lib54cligc_widget_input_destroy(struct lib54cligc_widget_input* input){
     return 0;
 }
 
-void lib54cligc_widget_input_display(int x, int y, int index, int active, char k, int* pactive, struct lib54cligc_widget_input* input){
+void lib54cligc_widget_input_display(int x, int y, int index, int active, char k, int* pactive, lib54cligc_widget_input* input){
     FILE* f = fopen("dlog", "a");
     char* o;
 
@@ -128,7 +128,7 @@ void lib54cligc_widget_input_display(int x, int y, int index, int active, char k
     fclose(f);
 }
 
-void lib54cligc_widget_button_display(int x, int y, char* label, int index, int activate, struct lib54cligc_widget_button button){
+void lib54cligc_widget_button_display(int x, int y, char* label, int index, int activate, lib54cligc_widget_button button){
     if (index == button.index){
         lib54cligc_pixel_text(x, y, label, button.fg2[0], button.fg2[1], button.fg2[2], button.bg2[0], button.bg2[1], button.bg2[2]);
 

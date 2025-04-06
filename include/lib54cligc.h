@@ -1,11 +1,11 @@
 #ifndef LIB54CLIGC_H
 #define LIB54CLIGC_H
 
-struct lib54cligc_pixelmap {
-    char* x;
-    char* y;
+typedef struct {
+    int* x;
+    int* y;
     int idx;
-};
+} lib54cligc_pixelmap;
 
 extern struct termios TERMINAL_FLAGS;
 extern struct termios TERMINAL_FLAGS_NEW;

@@ -6,7 +6,7 @@
 #include <lib54cligc/lib54cligc.h>
 #include <lib54cligc/lib54cligc-widgets.h>
 
-struct lib54cligc_widget_input input = {0, 0, {255, 255, 255}, {50, 50, 40}, {0, 0, 0}, {255, 255, 255}, 11, 0};
+lib54cligc_widget_input input = {0, 0, {255, 255, 255}, {50, 50, 40}, {0, 0, 0}, {255, 255, 255}, 11, 0};
 
 char text[11];
 
@@ -26,7 +26,7 @@ int main(){
 
     char lk = 0;
 
-    struct lib54cligc_widget_button submit = {1, {255, 255, 255}, {0, 0, 0}, {0, 0, 0}, {255, 255, 255}, onclick};
+    lib54cligc_widget_button submit = {1, {255, 255, 255}, {0, 0, 0}, {0, 0, 0}, {255, 255, 255}, onclick};
 
     lib54cligc_widget_input_create("type...", &input);
 
